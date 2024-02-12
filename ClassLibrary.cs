@@ -13,18 +13,20 @@ class Entity{
     }
 }
 
-class player{
+class Player : Creature{
+    public Player (int x, int y) : base(x, y){
 
+    }
 }
 
-class creature : Entity {
+class Creature : Entity {
 
-    int strength;
+    int strength; 
     int health;
     int stamina;
     int speed;
 
-    public creature(int x, int y, int speed, int strength, int health, int stamina) : base(x,y) {
+    public Creature(int x, int y, int speed, int strength, int health, int stamina) : base(x,y) {
         this.speed = speed;
         this.strength = strength;
         this.health = health;
@@ -33,9 +35,9 @@ class creature : Entity {
 
 }
 
-class items : Entity{
+class Items : Entity{
 
-    public items(int x, int y) : base(x,y) {
+    public Items(int x, int y) : base(x,y) {
 
     }
 }
