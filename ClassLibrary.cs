@@ -1,7 +1,6 @@
 namespace classes
 {
     
-char[,] gameArray = new char[10,10];
 
 class Entity{
     int x;
@@ -14,7 +13,7 @@ class Entity{
 }
 
 class Player : Creature{
-    public Player (int x, int y) : base(x, y){
+    public Player (int x, int y, int speed, int strength, int health, int stamina) : base(x, y, speed, strength, health, stamina){
 
     }
 }

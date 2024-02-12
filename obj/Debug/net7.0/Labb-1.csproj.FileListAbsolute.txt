@@ -1,0 +1,14 @@
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\Labb-1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\Labb-1.AssemblyInfoInputs.cache
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\Labb-1.AssemblyInfo.cs
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\Labb-1.csproj.CoreCompileInputs.cache
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\bin\Debug\net7.0\Labb-1.exe
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\bin\Debug\net7.0\Labb-1.deps.json
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\bin\Debug\net7.0\Labb-1.runtimeconfig.json
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\bin\Debug\net7.0\Labb-1.dll
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\bin\Debug\net7.0\Labb-1.pdb
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\Labb-1.dll
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\refint\Labb-1.dll
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\Labb-1.pdb
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\Labb-1.genruntimeconfig.cache
+C:\Users\nextg\Skolarbeten\Programmering Fördjupning\lab1\progforg-Labb-1\obj\Debug\net7.0\ref\Labb-1.dll
