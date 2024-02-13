@@ -1,7 +1,5 @@
 namespace classes
 {
-
-
     class Entity
     {
         public int x { get; set; }
@@ -22,9 +20,10 @@ namespace classes
 
     class Player : Creature
     {
+        private List<Items> backPack;
         public Player(int x, int y, int speed, int strength, int health, int stamina, char symbol) : base(x, y, speed, strength, health, stamina, symbol)
         {
-
+            backPack = new List<Items>();
         }
         public override void Interact(Entity otherEntity)
         {
@@ -73,7 +72,6 @@ namespace classes
 
     class Creature : Entity
     {
-
         int strength { get; set; }
         int health { get; set; }
         int stamina { get; set; }
@@ -95,7 +93,6 @@ namespace classes
 
     class Items : Entity
     {
-
         public Items(int x, int y, char symbol) : base(x, y, symbol)
         {
 

@@ -5,29 +5,6 @@ class Program
     static char[,] gameBoard = new char[12, 22];
     static void Main(string[] args)
     {
-        // Player player1 = new Player(0, 0, 2, 4, 10, 10, 'P');
-        // Creature enemy1 = new Creature(10, 16, 2, 5, 10, 10, 'E');
-        // Items item1 = new Items(7, 6, 'I');
-
-
-
-        // AddEntityToGameBoard(player1);
-        // AddEntityToGameBoard(enemy1);
-        // AddEntityToGameBoard(item1);
-
-        // enemy1.Interact(player1);
-        // item1.Interact(player1);
-
-        // DrawGameBoard();
-
-        // ConsoleKeyInfo keyInfo;
-        // do
-        // {
-        //     keyInfo = Console.ReadKey(true);
-        //     player1.HandleMovement(keyInfo.Key, gameBoard);
-        //     DrawGameBoard();
-        // } while (keyInfo.Key != ConsoleKey.Escape);
-
         bool inMainMenu = true;
 
         do
@@ -77,15 +54,19 @@ class Program
 
     static void StartGame()
     {
-        Player player1 = new Player(0, 0, 2, 4, 10, 10, 'P');
-        Creature enemy1 = new Creature(10, 16, 2, 5, 10, 10, 'E');
+        Player player1 = new Player(0, 0, 2, 4, 10, 50, 'P');
+        Creature enemy1 = new Creature(10, 16, 2, 15, 30, 10, 'E');
+        Creature enemy2 = new Creature(7, 18, 2, 15, 20, 10, 'E');
         Items item1 = new Items(7, 6, 'I');
+        Items item2 = new Items(2, 14, 'I');
 
 
 
         AddEntityToGameBoard(player1);
         AddEntityToGameBoard(enemy1);
+        AddEntityToGameBoard(enemy2);
         AddEntityToGameBoard(item1);
+        AddEntityToGameBoard(item2);
 
         enemy1.Interact(player1);
         item1.Interact(player1);
