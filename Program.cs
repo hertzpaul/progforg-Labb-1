@@ -60,7 +60,7 @@ class Program
         Items item1 = new Items(7, 6, 'I');
         Items item2 = new Items(2, 14, 'I');
 
-
+        Entity[] entities = {player1, enemy1, enemy2, item1, item2};
 
         AddEntityToGameBoard(player1);
         AddEntityToGameBoard(enemy1);
@@ -77,7 +77,7 @@ class Program
         do
         {
             keyInfo = Console.ReadKey(true);
-            player1.HandleMovement(keyInfo.Key, gameBoard);
+            player1.HandleMovement(keyInfo.Key, gameBoard, entities);
             DrawGameBoard();
         } while (keyInfo.Key != ConsoleKey.Escape);
     }

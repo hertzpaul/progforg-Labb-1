@@ -29,7 +29,7 @@ namespace classes
         {
         }
 
-        public void HandleMovement(ConsoleKey key, char[,] gameBoard)
+        public void HandleMovement(ConsoleKey key, char[,] gameBoard, Entity[] entities)
         {
             int newX = x;
             int newY = y;
@@ -58,6 +58,14 @@ namespace classes
                     throw new ArgumentOutOfRangeException("Cannot move outside the bounds of the game board.");
                 }
 
+                foreach (Entity entity in entities){
+
+                    if (entity is Items && entity.x == newX && entity.y == newY){
+                        AddToBackpack((Items)entity); 
+                        break;
+                    } 
+                }
+
                 gameBoard[x, y] = '\0';
                 x = newX;
                 y = newY;
@@ -67,6 +75,11 @@ namespace classes
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
+        }
+
+        public void AddToBackpack(Items item){
+            backPack.Add(item);
+            Console.WriteLine("You collected a item.");
         }
     }
 
