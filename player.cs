@@ -2,10 +2,10 @@ namespace classes;
 
 class Player : Creature
 {
-    private List<Items> backPack;
+    // private List<Items> backPack;
     public Player(int x, int y, int speed, int strength, int health, int stamina, char symbol) : base(x, y, speed, strength, health, stamina, symbol)
     {
-        backPack = new List<Items>();
+        // backPack = new List<Items>();
     }
     public override void Interact(Entity otherEntity)
     {
@@ -63,7 +63,7 @@ class Player : Creature
 
     public void AddToBackpack(Items item)
     {
-        backPack.Add(item);
+        Program.backPack.Add(item);
         Console.WriteLine("You collected a item.");
     }
 }

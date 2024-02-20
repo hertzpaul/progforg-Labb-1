@@ -4,6 +4,7 @@ class Program
 {
     static char[,] gameBoard = new char[12, 22];
     static Random random = new Random();
+    static public List<Items> backPack = new List<Items>();
     static void Main(string[] args)
     {
         bool inMainMenu = true;
@@ -28,6 +29,10 @@ class Program
                 break;
                 case (char)ConsoleKey.Escape:
                 Environment.Exit(0);
+                break;
+                case 'i':
+                inMainMenu = false;
+                ShowInventory(backPack);
                 break;
                 default:
                 Console.WriteLine("Invalid input");
@@ -79,8 +84,8 @@ class Program
         Player player1 = GeneratePlayer(4, 10, 50, 20);
         Creature enemy1 = GenerateCreature(2, 8, 35, 11);
         Creature enemy2 = GenerateCreature(2, 5, 30, 15);
-        Items item1 = GenerateItems();
-        Items item2 = GenerateItems();
+        Items item1 = GenerateItems("Staff");
+        Items item2 = GenerateItems("Sword");
 
 
 
@@ -136,11 +141,22 @@ class Program
         return new Creature(x, y, speed, strength, health, stamina, 'E');
     }
 
-    static Items GenerateItems()
+    static Items GenerateItems(string name)
     {
         int x = GenerateRandomXLocation();
         int y = GenerateRandomYLocation();
-        return new Items(x, y, 'I');
+        return new Items(name, x, y, 'I');
+    }
+
+    static void ShowInventory(List<Items> backPack)
+    {
+        Console.WriteLine("BackPack: ");
+        int itemCount = backPack.Count();
+        foreach(Items item in backPack)
+        {
+            Console.WriteLine("Item: " + item.Name);
+        }
+        Console.WriteLine("Total amount of items: " + itemCount);
     }
 
     static void DrawGameBoard()
