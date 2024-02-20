@@ -3,6 +3,7 @@
 class Program
 {
     static char[,] gameBoard = new char[12, 22];
+    static Random random = new Random();
     static void Main(string[] args)
     {
         bool inMainMenu = true;
@@ -54,11 +55,35 @@ class Program
 
     static void StartGame()
     {
-        Player player1 = new Player(0, 0, 2, 4, 10, 50, 'P');
-        Creature enemy1 = new Creature(10, 16, 2, 15, 30, 10, 'E');
-        Creature enemy2 = new Creature(7, 18, 2, 15, 20, 10, 'E');
-        Items item1 = new Items(7, 6, 'I');
-        Items item2 = new Items(2, 14, 'I');
+        // Random random = new Random();
+
+        // int randomPlayerXLocation = random.Next(12);
+        // int randomPlayerYLocation = random.Next(22);
+        // Player player1 = new Player(randomPlayerXLocation, randomPlayerYLocation, 2, 4, 10, 50, 'P');
+
+        // int randomEnemy1XLocation = random.Next(12);
+        // int randomEnemy1YLocation = random.Next(22);
+        // Creature enemy1 = new Creature(randomEnemy1XLocation, randomEnemy1YLocation, 2, 15, 30, 10, 'E');
+
+        // int randomEnemy2XLocation = random.Next(12);
+        // int randomEnemy2YLocation = random.Next(22);
+        // Creature enemy2 = new Creature(randomEnemy2XLocation, randomEnemy2YLocation, 2, 15, 20, 10, 'E');
+
+        // int randomItem1XLocation = random.Next(12);
+        // int randomItem1YLocation = random.Next(22);
+        // Items item1 = new Items(randomItem1XLocation, randomItem1YLocation, 'I');
+
+        // int randomItem2XLocation = random.Next(12);
+        // int randomItem2YLocation = random.Next(22);
+        // Items item2 = new Items(randomItem2XLocation, randomItem2YLocation, 'I');
+        Player player1 = GeneratePlayer(4, 10, 50, 20);
+        Creature enemy1 = GenerateCreature(2, 8, 35, 11);
+        Creature enemy2 = GenerateCreature(2, 5, 30, 15);
+        Items item1 = GenerateItems();
+        Items item2 = GenerateItems();
+
+
+
 
         Entity[] entities = {player1, enemy1, enemy2, item1, item2};
 
@@ -85,6 +110,37 @@ class Program
     static void AddEntityToGameBoard(Entity entity)
     {
         gameBoard[entity.x, entity.y] = entity.symbol;
+    }
+
+    static int GenerateRandomXLocation()
+    {
+        return random.Next(12);
+    }
+
+    static int GenerateRandomYLocation()
+    {
+        return random.Next(22);
+    }
+
+    static Player GeneratePlayer(int speed, int strength, int health, int stamina)
+    {
+        int x = GenerateRandomXLocation();
+        int y = GenerateRandomYLocation();
+        return new Player(x, y, speed, strength, health, stamina, 'P');
+    }
+
+    static Creature GenerateCreature(int speed, int strength, int health, int stamina)
+    {
+        int x = GenerateRandomXLocation();
+        int y = GenerateRandomYLocation();
+        return new Creature(x, y, speed, strength, health, stamina, 'E');
+    }
+
+    static Items GenerateItems()
+    {
+        int x = GenerateRandomXLocation();
+        int y = GenerateRandomYLocation();
+        return new Items(x, y, 'I');
     }
 
     static void DrawGameBoard()
