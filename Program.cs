@@ -1,4 +1,4 @@
-﻿using classes;
+﻿namespace classes;
 
 class Program
 {
@@ -16,30 +16,30 @@ class Program
             Console.WriteLine("Welcome to SalesAdventure3000!");
             Console.WriteLine("---------------*****---------------");
             Console.WriteLine("\nPress '1' to start the game\nPress '2' to read the game info and instructions\nPress 'Escape' to quit the game");
-            
+
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-            switch(keyInfo.KeyChar)
+            switch (keyInfo.KeyChar)
             {
                 case '1':
-                inMainMenu = false;
-                StartGame();
-                break;
+                    inMainMenu = false;
+                    StartGame();
+                    break;
                 case '2':
-                GameInfo();
-                break;
+                    GameInfo();
+                    break;
                 case (char)ConsoleKey.Escape:
-                Environment.Exit(0);
-                break;
+                    Environment.Exit(0);
+                    break;
                 case 'i':
-                inMainMenu = false;
-                ShowInventory(backPack);
-                break;
+                    inMainMenu = false;
+                    ShowInventory(backPack);
+                    break;
                 default:
-                Console.WriteLine("Invalid input");
-                break;
+                    Console.WriteLine("Invalid input");
+                    break;
             }
 
-        }while (inMainMenu);
+        } while (inMainMenu);
 
     }
     static void GameInfo()
@@ -60,27 +60,6 @@ class Program
 
     static void StartGame()
     {
-        // Random random = new Random();
-
-        // int randomPlayerXLocation = random.Next(12);
-        // int randomPlayerYLocation = random.Next(22);
-        // Player player1 = new Player(randomPlayerXLocation, randomPlayerYLocation, 2, 4, 10, 50, 'P');
-
-        // int randomEnemy1XLocation = random.Next(12);
-        // int randomEnemy1YLocation = random.Next(22);
-        // Creature enemy1 = new Creature(randomEnemy1XLocation, randomEnemy1YLocation, 2, 15, 30, 10, 'E');
-
-        // int randomEnemy2XLocation = random.Next(12);
-        // int randomEnemy2YLocation = random.Next(22);
-        // Creature enemy2 = new Creature(randomEnemy2XLocation, randomEnemy2YLocation, 2, 15, 20, 10, 'E');
-
-        // int randomItem1XLocation = random.Next(12);
-        // int randomItem1YLocation = random.Next(22);
-        // Items item1 = new Items(randomItem1XLocation, randomItem1YLocation, 'I');
-
-        // int randomItem2XLocation = random.Next(12);
-        // int randomItem2YLocation = random.Next(22);
-        // Items item2 = new Items(randomItem2XLocation, randomItem2YLocation, 'I');
         Player player1 = GeneratePlayer(4, 10, 50, 20);
         Creature enemy1 = GenerateCreature(2, 8, 35, 11);
         Creature enemy2 = GenerateCreature(2, 5, 30, 15);
@@ -90,7 +69,7 @@ class Program
 
 
 
-        Entity[] entities = {player1, enemy1, enemy2, item1, item2};
+        Entity[] entities = { player1, enemy1, enemy2, item1, item2 };
 
         AddEntityToGameBoard(player1);
         AddEntityToGameBoard(enemy1);
@@ -152,7 +131,7 @@ class Program
     {
         Console.WriteLine("BackPack: ");
         int itemCount = backPack.Count();
-        foreach(Items item in backPack)
+        foreach (Items item in backPack)
         {
             Console.WriteLine("Item: " + item.Name);
         }
@@ -162,6 +141,7 @@ class Program
     static void DrawGameBoard()
     {
         Console.Clear();
+
         for (int i = 0; i < gameBoard.GetLength(0); i++)
         {
             for (int j = 0; j < gameBoard.GetLength(1); j++)
@@ -177,5 +157,12 @@ class Program
             }
             Console.WriteLine();
         }
+
+        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+        if (keyInfo.Key == ConsoleKey.I)
+        {
+            ShowInventory(backPack);
+        }
+
     }
 }
