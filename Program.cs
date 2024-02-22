@@ -138,6 +138,7 @@ class Program
         Console.WriteLine("Total amount of items: " + itemCount);
     }
 
+
     static void DrawGameBoard()
     {
         Console.Clear();
