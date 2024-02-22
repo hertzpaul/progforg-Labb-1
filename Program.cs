@@ -157,13 +157,16 @@ class Program
                 }
             }
             Console.WriteLine();
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.I)
+            {
+                ShowInventory(backPack);
+            }
+
         }
 
-        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-        if (keyInfo.Key == ConsoleKey.I)
-        {
-            ShowInventory(backPack);
-        }
+
 
     }
 }
