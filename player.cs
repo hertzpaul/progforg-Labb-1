@@ -9,6 +9,11 @@ class Player : Creature
     }
     public override void Interact(Entity otherEntity)
     {
+        if (otherEntity is Creature)
+        {
+            Creature enemy = (Creature)otherEntity;
+            Console.WriteLine("You attacked the enemy!");
+        }
     }
 
     public void HandleMovement(ConsoleKey key, char[,] gameBoard, Entity[] entities)
@@ -50,6 +55,16 @@ class Player : Creature
                 }
             }
 
+            foreach (Entity entity in entities)
+            {
+                if (entity is Creature && entity.x == newX && entity.y == newY)
+                {
+                    Interact(entity);
+                    Combat.StartCombat(this, (Creature)entity);
+                    break;
+                }
+            }
+
             gameBoard[x, y] = '\0';
             x = newX;
             y = newY;
@@ -66,4 +81,47 @@ class Player : Creature
         Program.backPack.Add(item);
         Console.WriteLine("You collected a item.");
     }
+
+    public void NormalAttack(Creature enemy)
+    {
+        int damage = Strength;
+        enemy.TakeDamage(damage);
+        Console.WriteLine("\nYou dealt " + damage + " damage to the enemy!");
+        Console.WriteLine("The enemy's health is " + enemy.Health);
+    }
+
+    public void Special1(Creature enemy)
+    {
+        if (Stamina >= 10)
+        {
+            int damage = Strength + 5;
+            enemy.TakeDamage(damage);
+            Console.WriteLine("\nYou dealt " + damage + " damage to the enemy!");
+            Console.WriteLine("The enemy's health is " + enemy.Health);
+            Stamina -= 10;
+        }
+        else
+        {
+            Console.WriteLine("You do not have enough stamina to use this special attack.");
+        }
+
+    }
+
+    public void Special2(Creature enemy)
+    {
+        if (Stamina >= 15)
+        {
+            int damage = Strength + 8;
+            enemy.TakeDamage(damage);
+            Console.WriteLine("\nYou dealt " + damage + " damage to the enemy!");
+            Console.WriteLine("The enemy's health is " + enemy.Health);
+            Stamina -= 15;
+        }
+        else
+        {
+            Console.WriteLine("You do not have enough stamina to use this special attack.");
+        }
+    }
+
+
 }

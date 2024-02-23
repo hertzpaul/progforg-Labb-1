@@ -5,6 +5,13 @@ class Program
     static char[,] gameBoard = new char[12, 22];
     static Random random = new Random();
     static public List<Items> backPack = new List<Items>();
+    public enum AttackType
+    {
+        Normal,
+        Special1,
+        Special2
+
+    }
     static void Main(string[] args)
     {
         bool inMainMenu = true;
@@ -66,9 +73,6 @@ class Program
         Items item1 = GenerateItems("Staff");
         Items item2 = GenerateItems("Sword");
 
-
-
-
         Entity[] entities = { player1, enemy1, enemy2, item1, item2 };
 
         AddEntityToGameBoard(player1);
@@ -82,6 +86,16 @@ class Program
 
         DrawGameBoard();
 
+
+
+        if (player1.Health <= 0)
+        {
+            Console.WriteLine("You died!");
+            Console.ReadLine();
+            Environment.Exit(0);
+        }
+
+
         ConsoleKeyInfo keyInfo;
         do
         {
@@ -89,6 +103,7 @@ class Program
             player1.HandleMovement(keyInfo.Key, gameBoard, entities);
             DrawGameBoard();
         } while (keyInfo.Key != ConsoleKey.Escape);
+
     }
 
     static void AddEntityToGameBoard(Entity entity)
@@ -141,7 +156,8 @@ class Program
 
     static void DrawGameBoard()
     {
-        Console.Clear();
+        //Console.Clear();
+
 
         for (int i = 0; i < gameBoard.GetLength(0); i++)
         {
@@ -157,15 +173,13 @@ class Program
                 }
             }
             Console.WriteLine();
-
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-            if (keyInfo.Key == ConsoleKey.I)
-            {
-                ShowInventory(backPack);
-            }
-
         }
 
+        /*ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+        if (keyInfo.Key == ConsoleKey.I)
+        {
+            ShowInventory(backPack);
+        }*/
 
 
     }

@@ -19,4 +19,36 @@ class Creature : Entity
 
     }
 
+    public virtual int Attack()
+    {
+        return strength;
+    }
+
+    public virtual void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+
+    public bool IsAlive
+    {
+        get { return health > 0; }
+    }
+
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+
+    public int Strength
+    {
+        get { return strength; }
+        set { strength = value; }
+    }
+
+    public int Stamina
+    {
+        get { return stamina; }
+        set { stamina = value; }
+    }
 }
