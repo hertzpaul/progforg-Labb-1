@@ -87,21 +87,26 @@ class Program
         DrawGameBoard();
 
 
-
-        if (player1.Health <= 0)
-        {
-            Console.WriteLine("You died!");
-            Console.ReadLine();
-            Environment.Exit(0);
-        }
-
-
         ConsoleKeyInfo keyInfo;
         do
         {
             keyInfo = Console.ReadKey(true);
             player1.HandleMovement(keyInfo.Key, gameBoard, entities);
             DrawGameBoard();
+            if (player1.Health <= 0)
+            {
+                Console.WriteLine("You died!");
+                Console.WriteLine("Game Over! Press 'Enter' to return");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+
+            ConsoleKeyInfo keyinfo = Console.ReadKey(true);
+            if (keyinfo.Key == ConsoleKey.I)
+            {
+                ShowInventory(backPack);
+            }
+
         } while (keyInfo.Key != ConsoleKey.Escape);
 
     }
@@ -153,11 +158,9 @@ class Program
         Console.WriteLine("Total amount of items: " + itemCount);
     }
 
-
     static void DrawGameBoard()
     {
-        //Console.Clear();
-
+        Console.Clear();
 
         for (int i = 0; i < gameBoard.GetLength(0); i++)
         {
@@ -174,13 +177,5 @@ class Program
             }
             Console.WriteLine();
         }
-
-        /*ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-        if (keyInfo.Key == ConsoleKey.I)
-        {
-            ShowInventory(backPack);
-        }*/
-
-
     }
 }
