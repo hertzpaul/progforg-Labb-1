@@ -51,6 +51,20 @@ class Player : Creature
                 if (entity is Items && entity.x == newX && entity.y == newY)
                 {
                     AddToBackpack((Items)entity);
+                    // HandleMovement som kör interact metoden när player är på samma plats som items
+                    if(entity is Sword && entity.x == newX && entity.y == newY)
+                    {
+                        ((Items)entity).Interact(this);
+                    }
+                    else if(entity is HealthPotion && entity.x == newX && entity.y == newY)
+                    {
+                        ((Items)entity).Interact(this);
+                    }
+                    else if(entity is StaminaPotion && entity.x == newX && entity.y == newY)
+                    {
+                        ((Items)entity).Interact(this);
+                    }
+                    //Slutet på det jag la till för handlemovement
                     break;
                 }
             }

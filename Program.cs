@@ -68,21 +68,38 @@ class Program
     static void StartGame()
     {
         Player player1 = GeneratePlayer(4, 10, 50, 20);
-        Creature enemy1 = GenerateCreature(2, 8, 35, 11);
+        Creature enemy1 = GenerateCreature(2, 8, 30, 11);
         Creature enemy2 = GenerateCreature(2, 5, 30, 15);
-        Items item1 = GenerateItems("Staff");
-        Items item2 = GenerateItems("Sword");
+        Creature enemy3 = GenerateCreature(2, 7, 30, 11);
+        Creature enemy4 = GenerateCreature(2, 5, 30, 11);
 
-        Entity[] entities = { player1, enemy1, enemy2, item1, item2 };
+
+        Sword sword1 = GenerateSword(5, "Excalibur", 'I');
+        HealthPotion healthPotion1 = GenerateHealthPotion(25, "HealthPotion", 'I');
+        StaminaPotion staminaPotion1 = GenerateStaminaPotion(15, "StaminaPotion", 'I');
+
+        // Items item1 = GenerateItems("Staff");
+        // Items item2 = GenerateItems("Sword");
+
+        // Entity[] entities = { player1, enemy1, enemy2, item1, item2 };
+
+        Entity[] entities = { player1, enemy1, enemy2, sword1, healthPotion1, staminaPotion1, };
 
         AddEntityToGameBoard(player1);
         AddEntityToGameBoard(enemy1);
         AddEntityToGameBoard(enemy2);
-        AddEntityToGameBoard(item1);
-        AddEntityToGameBoard(item2);
+        AddEntityToGameBoard(enemy3);
+        AddEntityToGameBoard(enemy4);
+
+        AddEntityToGameBoard(sword1);
+        AddEntityToGameBoard(healthPotion1);
+        AddEntityToGameBoard(staminaPotion1);
+        // AddEntityToGameBoard(item1);
+        // AddEntityToGameBoard(item2);
 
         enemy1.Interact(player1);
-        item1.Interact(player1);
+        
+        // item1.Interact(player1);
 
         DrawGameBoard();
 
@@ -147,6 +164,27 @@ class Program
         return new Items(name, x, y, 'I');
     }
 
+    static Sword GenerateSword(int swordDamage, string name, char symbol)
+    {
+        int x = GenerateRandomXLocation();
+        int y = GenerateRandomYLocation();
+        return new Sword(swordDamage, name, x, y, symbol);
+    }
+
+    static HealthPotion GenerateHealthPotion(int healingAmount, string name, char symbol)
+    {
+        int x = GenerateRandomXLocation();
+        int y = GenerateRandomYLocation();
+        return new HealthPotion(name, healingAmount, x, y, symbol);
+    }
+
+    static StaminaPotion GenerateStaminaPotion(int staminaRecoverAmount, string name, char symbol)
+    {
+        int x = GenerateRandomXLocation();
+        int y = GenerateRandomYLocation();
+        return new StaminaPotion(staminaRecoverAmount, name, x, y, symbol);
+    }
+
     static void ShowInventory(List<Items> backPack)
     {
         Console.WriteLine("BackPack: ");
@@ -160,7 +198,7 @@ class Program
 
     static void DrawGameBoard()
     {
-        Console.Clear();
+        //Console.Clear();
 
         for (int i = 0; i < gameBoard.GetLength(0); i++)
         {

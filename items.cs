@@ -7,4 +7,8 @@ class Items : Entity
     {
         this.Name = name;
     }
+    public virtual void Interact(Player player)
+    {
+        
+    }
 }
