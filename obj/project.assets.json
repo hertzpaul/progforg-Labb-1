@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
+      "projectUniqueName": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
       "projectName": "Labb-1",
-      "projectPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
+      "projectPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
       "packagesPath": "/Users/paulhertz/.nuget/packages/",
-      "outputPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/obj/",
+      "outputPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/paulhertz/.nuget/NuGet/NuGet.Config"
