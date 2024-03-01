@@ -49,28 +49,39 @@ class Combat
 
     private static void PlayerAttack(Player player, Creature enemy)
     {
-        Console.WriteLine("What do you want to do?");
-        Console.WriteLine("1. Normal Attack");
-        Console.WriteLine("2. Special Attack 1");
-        Console.WriteLine("3. Special Attack 2");
 
-        ConsoleKeyInfo keyInfo = Console.ReadKey();
-        Console.WriteLine();
-        switch (keyInfo.KeyChar)
+        bool attackMeue = true;
+
+        do
         {
-            case '1':
-                player.NormalAttack(enemy);
-                break;
-            case '2':
-                player.Special1(enemy);
-                break;
-            case '3':
-                player.Special2(enemy);
-                break;
-            default:
-                Console.WriteLine("Invalid input");
-                break;
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("1. Normal Attack");
+            Console.WriteLine("2. Special Attack 1");
+            Console.WriteLine("3. Special Attack 2");
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            Console.WriteLine();
+            switch (keyInfo.KeyChar)
+            {
+                case '1':
+                    attackMeue = false;
+                    player.NormalAttack(enemy);
+                    break;
+                case '2':
+                    attackMeue = false;
+                    player.Special1(enemy);
+                    break;
+                case '3':
+                    attackMeue = false;
+                    player.Special2(enemy);
+                    break;
+                default:
+                    Console.WriteLine("Invalid input");
+                    break;
+            }
         }
+
+        while (attackMeue);
     }
 
     private static void EnemyAttack(Player player, Creature enemy)

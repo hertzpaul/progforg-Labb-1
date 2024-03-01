@@ -35,6 +35,7 @@ class Player : Creature
             case ConsoleKey.RightArrow:
                 newY++;
                 break;
+
             default:
                 return;
         }
@@ -52,18 +53,18 @@ class Player : Creature
                 {
                     AddToBackpack((Items)entity);
                     // HandleMovement som kör interact metoden när player är på samma plats som items
-                    if(entity is Sword && entity.x == newX && entity.y == newY)
+                    /*if (entity is Sword && entity.x == newX && entity.y == newY)
                     {
                         ((Items)entity).Interact(this);
                     }
-                    else if(entity is HealthPotion && entity.x == newX && entity.y == newY)
+                    else if (entity is HealthPotion && entity.x == newX && entity.y == newY)
                     {
                         ((Items)entity).Interact(this);
                     }
-                    else if(entity is StaminaPotion && entity.x == newX && entity.y == newY)
+                    else if (entity is StaminaPotion && entity.x == newX && entity.y == newY)
                     {
                         ((Items)entity).Interact(this);
-                    }
+                    }*/
                     //Slutet på det jag la till för handlemovement
                     break;
                 }
@@ -137,5 +138,18 @@ class Player : Creature
         }
     }
 
+    public void ConsumeItems(int index)
+    {
+        if (index >= 0 && index < Program.backPack.Count)
+        {
+            Console.WriteLine("You used a " + Program.backPack[index].Name + ".");
+            //((Items)entity).Interact(this);
+            Program.backPack.RemoveAt(index);
+        }
+        else
+        {
+            Console.WriteLine("Invalid item index.");
+        }
+    }
 
 }

@@ -37,10 +37,7 @@ class Program
                 case (char)ConsoleKey.Escape:
                     Environment.Exit(0);
                     break;
-                case 'i':
-                    inMainMenu = false;
-                    ShowInventory(backPack);
-                    break;
+
                 default:
                     Console.WriteLine("Invalid input");
                     break;
@@ -74,16 +71,16 @@ class Program
         Creature enemy4 = GenerateCreature(2, 5, 30, 11);
 
 
-        Sword sword1 = GenerateSword(5, "Excalibur", 'I');
-        HealthPotion healthPotion1 = GenerateHealthPotion(25, "HealthPotion", 'I');
-        StaminaPotion staminaPotion1 = GenerateStaminaPotion(15, "StaminaPotion", 'I');
+        Sword sword1 = GenerateSword(5, "Excalibur", 'X');
+        HealthPotion healthPotion1 = GenerateHealthPotion(25, "HealthPotion", 'H');
+        StaminaPotion staminaPotion1 = GenerateStaminaPotion(15, "StaminaPotion", 'S');
 
         // Items item1 = GenerateItems("Staff");
         // Items item2 = GenerateItems("Sword");
 
         // Entity[] entities = { player1, enemy1, enemy2, item1, item2 };
 
-        Entity[] entities = { player1, enemy1, enemy2, sword1, healthPotion1, staminaPotion1, };
+        Entity[] entities = { player1, enemy1, enemy2, enemy3, enemy4, sword1, healthPotion1, staminaPotion1, };
 
         AddEntityToGameBoard(player1);
         AddEntityToGameBoard(enemy1);
@@ -98,7 +95,7 @@ class Program
         // AddEntityToGameBoard(item2);
 
         enemy1.Interact(player1);
-        
+
         // item1.Interact(player1);
 
         DrawGameBoard();
@@ -122,6 +119,14 @@ class Program
             if (keyinfo.Key == ConsoleKey.I)
             {
                 ShowInventory(backPack);
+
+            }
+
+            if (ConsoleKey.C == keyinfo.Key)
+            {
+                Console.WriteLine("Enter the index of the item you want to use");
+                int index = int.Parse(Console.ReadLine());
+                player1.ConsumeItems(index);
             }
 
         } while (keyInfo.Key != ConsoleKey.Escape);
@@ -194,6 +199,7 @@ class Program
             Console.WriteLine("Item: " + item.Name);
         }
         Console.WriteLine("Total amount of items: " + itemCount);
+
     }
 
     static void DrawGameBoard()
