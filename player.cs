@@ -138,18 +138,38 @@ class Player : Creature
         }
     }
 
-    public void ConsumeItems(int index)
+    public void ConsumeItem(int index)
     {
         if (index >= 0 && index < Program.backPack.Count)
         {
-            Console.WriteLine("You used a " + Program.backPack[index].Name + ".");
-            //((Items)entity).Interact(this);
-            Program.backPack.RemoveAt(index);
+            Items itemToConsume = Program.backPack[index];
+
+            if (itemToConsume is Sword)
+            {
+                ((Sword)itemToConsume).Interact(this);
+            }
+            else if (itemToConsume is HealthPotion)
+            {
+                ((HealthPotion)itemToConsume).Interact(this);
+            }
+            else if (itemToConsume is StaminaPotion)
+            {
+                ((StaminaPotion)itemToConsume).Interact(this);
+            }
+
+            if (itemToConsume is HealthPotion || itemToConsume is StaminaPotion)
+            {
+                Program.backPack.RemoveAt(index);
+            }
+
+            Console.WriteLine("You used a " + itemToConsume.Name + ".");
         }
+
         else
         {
             Console.WriteLine("Invalid item index.");
         }
+
     }
 
 }

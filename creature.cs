@@ -21,7 +21,21 @@ class Creature : Entity
 
     public virtual int Attack()
     {
-        return strength;
+
+        Random random = new Random();
+        int randomNumber = random.Next(0, 101);
+        int result;
+
+        if (randomNumber < 80)
+        {
+            result = strength;
+        }
+        else
+        {
+            result = strength + 5;
+        }
+
+        return (result);
     }
 
     public virtual void TakeDamage(int damage)

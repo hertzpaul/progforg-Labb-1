@@ -52,7 +52,11 @@ class Program
         Console.WriteLine("----------------------------------------------------------------*******---------------------------------------------------------------");
         Console.WriteLine("\nSo you chose to be a pleb and read the gameinfo");
         Console.WriteLine("\nThis game is a combat game where you as a player will need to pickup items in order to challenge various monsters on the board");
-        Console.WriteLine("\nPlayers will be marked as 'P' on the board. Items will be marked as 'I' and monsters will be marked as 'E'");
+        Console.WriteLine("\nPlayers will be marked as 'P' on the board. Items will be marked as 'H', 'X', 'S' and monsters will be marked as 'E'");
+        Console.WriteLine("\nThe boss will be marked as 'B'");
+        Console.WriteLine("\nItem marked as 'H' will be a health potion, which will be consumed when used");
+        Console.WriteLine("\nItem marked as 'S' will be a stamina potion, which will be consumed when used. Stamina is used to preform special attacks");
+        Console.WriteLine("\nItem marked as 'X' will be a weapon, which will be equipped when used");
         Console.WriteLine("\nTo pickup items you will need to stand on the same position as the item");
         Console.WriteLine("\nSome items will be needed to equipped and some will be consumed on use.");
         Console.WriteLine("\nTo challenge and fight monsters you will need to stand in the same spot as the monster to initiate combat");
@@ -65,14 +69,17 @@ class Program
     static void StartGame()
     {
         Player player1 = GeneratePlayer(4, 10, 50, 20);
-        Creature enemy1 = GenerateCreature(2, 8, 30, 11);
-        Creature enemy2 = GenerateCreature(2, 5, 30, 15);
-        Creature enemy3 = GenerateCreature(2, 7, 30, 11);
-        Creature enemy4 = GenerateCreature(2, 5, 30, 11);
+        Creature enemy1 = GenerateCreature(2, 8, 30, 11, 'E');
+        Creature enemy2 = GenerateCreature(2, 5, 30, 15, 'E');
+        Creature enemy3 = GenerateCreature(2, 7, 30, 11, 'E');
+        Creature enemy4 = GenerateCreature(2, 5, 30, 11, 'E');
+        Creature enemyBoss = GenerateCreature(1, 12, 50, 20, 'B');
+
 
 
         Sword sword1 = GenerateSword(5, "Excalibur", 'X');
         HealthPotion healthPotion1 = GenerateHealthPotion(25, "HealthPotion", 'H');
+        HealthPotion healthPotion2 = GenerateHealthPotion(25, "HealthPotion", 'H');
         StaminaPotion staminaPotion1 = GenerateStaminaPotion(15, "StaminaPotion", 'S');
 
         // Items item1 = GenerateItems("Staff");
@@ -80,16 +87,19 @@ class Program
 
         // Entity[] entities = { player1, enemy1, enemy2, item1, item2 };
 
-        Entity[] entities = { player1, enemy1, enemy2, enemy3, enemy4, sword1, healthPotion1, staminaPotion1, };
+        Entity[] entities = { player1, enemy1, enemy2, enemy3, enemy4, enemyBoss, sword1, healthPotion1, healthPotion2, staminaPotion1, };
 
         AddEntityToGameBoard(player1);
         AddEntityToGameBoard(enemy1);
         AddEntityToGameBoard(enemy2);
         AddEntityToGameBoard(enemy3);
         AddEntityToGameBoard(enemy4);
+        AddEntityToGameBoard(enemyBoss);
+
 
         AddEntityToGameBoard(sword1);
         AddEntityToGameBoard(healthPotion1);
+        AddEntityToGameBoard(healthPotion2);
         AddEntityToGameBoard(staminaPotion1);
         // AddEntityToGameBoard(item1);
         // AddEntityToGameBoard(item2);
@@ -125,8 +135,8 @@ class Program
             if (ConsoleKey.C == keyinfo.Key)
             {
                 Console.WriteLine("Enter the index of the item you want to use");
-                int index = int.Parse(Console.ReadLine());
-                player1.ConsumeItems(index);
+                int index = int.Parse(Console.ReadLine()) - 1;
+                player1.ConsumeItem(index);
             }
 
         } while (keyInfo.Key != ConsoleKey.Escape);
@@ -155,11 +165,11 @@ class Program
         return new Player(x, y, speed, strength, health, stamina, 'P');
     }
 
-    static Creature GenerateCreature(int speed, int strength, int health, int stamina)
+    static Creature GenerateCreature(int speed, int strength, int health, int stamina, char symbol)
     {
         int x = GenerateRandomXLocation();
         int y = GenerateRandomYLocation();
-        return new Creature(x, y, speed, strength, health, stamina, 'E');
+        return new Creature(x, y, speed, strength, health, stamina, symbol);
     }
 
     static Items GenerateItems(string name)
@@ -204,7 +214,13 @@ class Program
 
     static void DrawGameBoard()
     {
-        //Console.Clear();
+        Console.Clear();
+        Console.WriteLine("-------------------*****-------------------");
+        Console.WriteLine("Move with the arrow keys");
+        Console.WriteLine("\nPress 'I' to see your inventory");
+        Console.WriteLine("\nPress 'C' to consume an item");
+        Console.WriteLine("-------------------*****-------------------");
+        Console.WriteLine("");
 
         for (int i = 0; i < gameBoard.GetLength(0); i++)
         {

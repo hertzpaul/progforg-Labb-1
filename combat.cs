@@ -87,6 +87,8 @@ class Combat
     private static void EnemyAttack(Player player, Creature enemy)
     {
         int damage = enemy.Attack();
+        //int damage = ((Boss)enemy).calculateDamage();
+
         player.TakeDamage(damage);
         Console.WriteLine("\nThe enemy dealt " + damage + " damage to you!");
         Console.WriteLine("Your health is " + player.Health);

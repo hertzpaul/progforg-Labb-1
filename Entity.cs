@@ -1,6 +1,6 @@
 namespace classes;
 
-class Entity
+abstract class Entity
 {
     public int x { get; set; }
     public int y { get; set; }
