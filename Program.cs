@@ -2,9 +2,12 @@
 
 class Program
 {
+    //Deklaration av spelplanen, slumpgenerator och ryggsäcken
     static char[,] gameBoard = new char[12, 22];
     static Random random = new Random();
     static public List<Items> backPack = new List<Items>();
+
+    //Enmum för olika attacktyper
     public enum AttackType
     {
         Normal,
@@ -12,18 +15,24 @@ class Program
         Special2
 
     }
+
+    //Main-metoden för spelprogrammet
     static void Main(string[] args)
     {
+        //Bool för att kontrollera om man är i menyn eller inte
         bool inMainMenu = true;
 
+        //Loop för huvudmenyn
         do
         {
+            //Startmeny och information
             Console.Clear();
             Console.WriteLine("---------------*****---------------");
             Console.WriteLine("Welcome to SalesAdventure3000!");
             Console.WriteLine("---------------*****---------------");
             Console.WriteLine("\nPress '1' to start the game\nPress '2' to read the game info and instructions\nPress 'Escape' to quit the game");
 
+            //Läser av indata från användaren
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             switch (keyInfo.KeyChar)
             {
@@ -42,12 +51,14 @@ class Program
                     Console.WriteLine("Invalid input");
                     break;
             }
-
+            //Loopar tills man inte är i menyn
         } while (inMainMenu);
-
     }
+
+    //Metod för att visa spelinformationen
     static void GameInfo()
     {
+        //Skriver ut spelinformationen och instruktionerna
         Console.Clear();
         Console.WriteLine("----------------------------------------------------------------*******---------------------------------------------------------------");
         Console.WriteLine("\nSo you chose to be a pleb and read the gameinfo");
@@ -66,8 +77,10 @@ class Program
         Console.ReadLine();
     }
 
+    //Metod för att starta spelet
     static void StartGame()
     {
+        //Skapar spelare och fiender med olika attribut och positioner
         Player player1 = GeneratePlayer(4, 10, 50, 20);
         Creature enemy1 = GenerateCreature(2, 8, 30, 11, 'E');
         Creature enemy2 = GenerateCreature(2, 5, 30, 15, 'E');
@@ -75,20 +88,16 @@ class Program
         Creature enemy4 = GenerateCreature(2, 5, 30, 11, 'E');
         Creature enemyBoss = GenerateCreature(1, 12, 50, 20, 'B');
 
-
-
+        //Skapar olika typer av items 
         Sword sword1 = GenerateSword(5, "Excalibur", 'X');
         HealthPotion healthPotion1 = GenerateHealthPotion(25, "HealthPotion", 'H');
         HealthPotion healthPotion2 = GenerateHealthPotion(25, "HealthPotion", 'H');
         StaminaPotion staminaPotion1 = GenerateStaminaPotion(15, "StaminaPotion", 'S');
 
-        // Items item1 = GenerateItems("Staff");
-        // Items item2 = GenerateItems("Sword");
-
-        // Entity[] entities = { player1, enemy1, enemy2, item1, item2 };
-
+        //Skapar en array med alla olika entiteter
         Entity[] entities = { player1, enemy1, enemy2, enemy3, enemy4, enemyBoss, sword1, healthPotion1, healthPotion2, staminaPotion1, };
 
+        //Lägger till alla entiteter i spelplanen
         AddEntityToGameBoard(player1);
         AddEntityToGameBoard(enemy1);
         AddEntityToGameBoard(enemy2);
@@ -96,27 +105,27 @@ class Program
         AddEntityToGameBoard(enemy4);
         AddEntityToGameBoard(enemyBoss);
 
-
         AddEntityToGameBoard(sword1);
         AddEntityToGameBoard(healthPotion1);
         AddEntityToGameBoard(healthPotion2);
         AddEntityToGameBoard(staminaPotion1);
-        // AddEntityToGameBoard(item1);
-        // AddEntityToGameBoard(item2);
 
+        //Inleder interationen mellan spelare och den första fienden
         enemy1.Interact(player1);
 
-        // item1.Interact(player1);
-
+        //Startar spelet genom att rita upp spelplanen
         DrawGameBoard();
 
-
+        //Loop för spelet
         ConsoleKeyInfo keyInfo;
         do
         {
+            //Läser av indata från användaren och flyttar spelaren efter det
             keyInfo = Console.ReadKey(true);
             player1.HandleMovement(keyInfo.Key, gameBoard, entities);
             DrawGameBoard();
+
+            //Kontrollerar om spelarens health är noll, isåfall avslutas spelet
             if (player1.Health <= 0)
             {
                 Console.WriteLine("You died!");
@@ -125,11 +134,11 @@ class Program
                 Environment.Exit(0);
             }
 
+            //Läser av om man vill öppna backpack eller om man vill använda items
             ConsoleKeyInfo keyinfo = Console.ReadKey(true);
             if (keyinfo.Key == ConsoleKey.I)
             {
                 ShowInventory(backPack);
-
             }
 
             if (ConsoleKey.C == keyinfo.Key)
@@ -138,26 +147,30 @@ class Program
                 int index = int.Parse(Console.ReadLine()) - 1;
                 player1.ConsumeItem(index);
             }
-
+            //Loopar tills man inte trycker på escape
         } while (keyInfo.Key != ConsoleKey.Escape);
 
     }
 
+    //Metod för att lägga till en entitet i spelplanen
     static void AddEntityToGameBoard(Entity entity)
     {
         gameBoard[entity.x, entity.y] = entity.symbol;
     }
 
+    //Metod för att generera en slumpmässig x-kordinat
     static int GenerateRandomXLocation()
     {
         return random.Next(12);
     }
 
+    //Meodd för att generera en slumpmässig y-kordinat
     static int GenerateRandomYLocation()
     {
         return random.Next(22);
     }
 
+    //Metod för att generera spelare
     static Player GeneratePlayer(int speed, int strength, int health, int stamina)
     {
         int x = GenerateRandomXLocation();
@@ -165,6 +178,7 @@ class Program
         return new Player(x, y, speed, strength, health, stamina, 'P');
     }
 
+    //Metod för att generera fiende
     static Creature GenerateCreature(int speed, int strength, int health, int stamina, char symbol)
     {
         int x = GenerateRandomXLocation();
@@ -172,6 +186,7 @@ class Program
         return new Creature(x, y, speed, strength, health, stamina, symbol);
     }
 
+    //Metod för att generera items
     static Items GenerateItems(string name)
     {
         int x = GenerateRandomXLocation();
@@ -179,6 +194,7 @@ class Program
         return new Items(name, x, y, 'I');
     }
 
+    //Metod för att generera sword
     static Sword GenerateSword(int swordDamage, string name, char symbol)
     {
         int x = GenerateRandomXLocation();
@@ -186,6 +202,7 @@ class Program
         return new Sword(swordDamage, name, x, y, symbol);
     }
 
+    //Metod för att generera health potion
     static HealthPotion GenerateHealthPotion(int healingAmount, string name, char symbol)
     {
         int x = GenerateRandomXLocation();
@@ -193,6 +210,7 @@ class Program
         return new HealthPotion(name, healingAmount, x, y, symbol);
     }
 
+    //Metod för att generera stamina potion
     static StaminaPotion GenerateStaminaPotion(int staminaRecoverAmount, string name, char symbol)
     {
         int x = GenerateRandomXLocation();
@@ -200,6 +218,7 @@ class Program
         return new StaminaPotion(staminaRecoverAmount, name, x, y, symbol);
     }
 
+    //Metod för att visa inventory/Backpack
     static void ShowInventory(List<Items> backPack)
     {
         Console.WriteLine("BackPack: ");
@@ -212,6 +231,7 @@ class Program
 
     }
 
+    //Metod för att rita ut spelplanen
     static void DrawGameBoard()
     {
         Console.Clear();

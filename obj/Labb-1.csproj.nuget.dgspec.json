@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj": {}
+    "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj": {}
   },
   "projects": {
-    "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj": {
+    "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
+        "projectUniqueName": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
         "projectName": "Labb-1",
-        "projectPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
+        "projectPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
         "packagesPath": "/Users/paulhertz/.nuget/packages/",
-        "outputPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/obj/",
+        "outputPath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/paulhertz/.nuget/NuGet/NuGet.Config"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -51,15 +56,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.15, 7.0.15]"
+              "version": "[7.0.17, 7.0.17]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[7.0.15, 7.0.15]"
+              "version": "[7.0.17, 7.0.17]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.15, 7.0.15]"
+              "version": "[7.0.17, 7.0.17]"
             }
           ],
           "frameworkReferences": {
@@ -67,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

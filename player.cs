@@ -2,25 +2,31 @@ namespace classes;
 
 class Player : Creature
 {
-    // private List<Items> backPack;
+    //Konstruktor för att skapa en ny Player
     public Player(int x, int y, int speed, int strength, int health, int stamina, char symbol) : base(x, y, speed, strength, health, stamina, symbol)
     {
-        // backPack = new List<Items>();
+
     }
+
+    //Override-metod för interation med Entity
     public override void Interact(Entity otherEntity)
     {
         if (otherEntity is Creature)
         {
+            //Om otherEntity är en Creature, starta en attack
             Creature enemy = (Creature)otherEntity;
             Console.WriteLine("You attacked the enemy!");
         }
     }
 
+    //Metod för att hantera användarinput och hur spelaren rör sig på spelplanen
     public void HandleMovement(ConsoleKey key, char[,] gameBoard, Entity[] entities)
     {
+        //Variabler för att hålla reda på den nya positionen efter rörelse
         int newX = x;
         int newY = y;
 
+        //Hanterat spelarens rörelse baserat på tangenttryckning
         switch (key)
         {
             case ConsoleKey.UpArrow:
@@ -41,37 +47,27 @@ class Player : Creature
         }
         try
         {
+            //Kontrollerar om spelarens nya positionen är inom spelplanen
             if (newX < 0 || newX >= gameBoard.GetLength(0) || newY < 0 || newY >= gameBoard.GetLength(1))
             {
                 throw new ArgumentOutOfRangeException("Cannot move outside the bounds of the game board.");
             }
 
+            //Interagerar med alla entity på samma position som spelaren
             foreach (Entity entity in entities)
             {
-
+                //Kontrollerar om det finns föremål på samma position som spelaren, läggs det till i backpack
                 if (entity is Items && entity.x == newX && entity.y == newY)
                 {
                     AddToBackpack((Items)entity);
-                    // HandleMovement som kör interact metoden när player är på samma plats som items
-                    /*if (entity is Sword && entity.x == newX && entity.y == newY)
-                    {
-                        ((Items)entity).Interact(this);
-                    }
-                    else if (entity is HealthPotion && entity.x == newX && entity.y == newY)
-                    {
-                        ((Items)entity).Interact(this);
-                    }
-                    else if (entity is StaminaPotion && entity.x == newX && entity.y == newY)
-                    {
-                        ((Items)entity).Interact(this);
-                    }*/
-                    //Slutet på det jag la till för handlemovement
                     break;
                 }
             }
 
+            //Interagerar med alla entity på samma position som spelaren
             foreach (Entity entity in entities)
             {
+                //Kontrollerar om det finns en Creature på samma position som spelaren, startar en attack
                 if (entity is Creature && entity.x == newX && entity.y == newY)
                 {
                     Interact(entity);
@@ -80,6 +76,7 @@ class Player : Creature
                 }
             }
 
+            //Uppdaterar spelarens position på spelplanen
             gameBoard[x, y] = '\0';
             x = newX;
             y = newY;
@@ -91,12 +88,14 @@ class Player : Creature
         }
     }
 
+    //Metod för lägga till ett item i backpack
     public void AddToBackpack(Items item)
     {
         Program.backPack.Add(item);
         Console.WriteLine("You collected a item.");
     }
 
+    //Metod för att utföra en NormalAttack mot enemy
     public void NormalAttack(Creature enemy)
     {
         int damage = Strength;
@@ -105,6 +104,7 @@ class Player : Creature
         Console.WriteLine("The enemy's health is " + enemy.Health);
     }
 
+    //Metod för att utföra en Special1 attack mot enemy
     public void Special1(Creature enemy)
     {
         if (Stamina >= 10)
@@ -119,9 +119,9 @@ class Player : Creature
         {
             Console.WriteLine("You do not have enough stamina to use this special attack.");
         }
-
     }
 
+    //Metod för att utföra en Special2 attack mot enemy
     public void Special2(Creature enemy)
     {
         if (Stamina >= 15)
@@ -138,12 +138,15 @@ class Player : Creature
         }
     }
 
+    //Metod för att konsumera items från backpack 
     public void ConsumeItem(int index)
     {
+        //Kontrollerar om index är inom gränserna för backpack
         if (index >= 0 && index < Program.backPack.Count)
         {
             Items itemToConsume = Program.backPack[index];
 
+            //Hanterar hur items ska användas baserat på typ av item
             if (itemToConsume is Sword)
             {
                 ((Sword)itemToConsume).Interact(this);
@@ -157,6 +160,7 @@ class Player : Creature
                 ((StaminaPotion)itemToConsume).Interact(this);
             }
 
+            //Tar bort healthpotion eller staminapotion om dem har använts
             if (itemToConsume is HealthPotion || itemToConsume is StaminaPotion)
             {
                 Program.backPack.RemoveAt(index);
@@ -169,7 +173,5 @@ class Player : Creature
         {
             Console.WriteLine("Invalid item index.");
         }
-
     }
-
 }
