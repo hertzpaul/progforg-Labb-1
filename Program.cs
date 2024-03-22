@@ -141,12 +141,21 @@ class Program
                 ShowInventory(backPack);
             }
 
-            if (ConsoleKey.C == keyinfo.Key)
+            //Kollar om användaren anger giltig inmatning, om inte kastas ett exception
+            try
             {
-                Console.WriteLine("Enter the index of the item you want to use");
-                int index = int.Parse(Console.ReadLine()) - 1;
-                player1.ConsumeItem(index);
+                if (ConsoleKey.C == keyinfo.Key)
+                {
+                    Console.WriteLine("Enter the index of the item you want to use");
+                    int index = int.Parse(Console.ReadLine()) - 1;
+                    player1.ConsumeItem(index);
+                }
             }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input! Please enter a valid index (numeric value).");
+            }
+
             //Loopar tills man inte trycker på escape
         } while (keyInfo.Key != ConsoleKey.Escape);
 
