@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "NZVyQcmFoksamOWtwPNiJxw/P82nAJnBQiE7lnl0KtU8K77a7eXnCAcKWUVfZNgcwI8VuAjCEfS2xF9ab0S5ZA==",
+  "dgSpecHash": "xBU36qJbY4mFAlzV2jD3xJeI0C6fuDeZPreq/oVzct9RpIfpBXaxkYnIv5hAMgv8hT0EHTH0rbj3nlw2o/hXwg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nextg\\Skolarbeten\\Programmering Fördjupning\\lab1\\progforg-Labb-1\\Labb-1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/paulhertz/TUC/Programmering fördjupning/progforg-Labb-1/Labb-1.csproj",
+  "expectedPackageFiles": [
+    "/Users/paulhertz/.nuget/packages/microsoft.netcore.app.ref/7.0.17/microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/paulhertz/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.17/microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/paulhertz/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.17/microsoft.netcore.app.host.osx-arm64.7.0.17.nupkg.sha512"
+  ],
   "logs": []
 }
